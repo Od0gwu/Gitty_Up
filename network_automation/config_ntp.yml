@@ -1,0 +1,21 @@
+--- 
+
+- name: "configure NTP peers"
+  hosts: cisco
+  gather_facts: true
+  connection: network_cli
+
+  tasks:
+    - name:  "Configuring NTP"
+      vars:
+        myservers:
+          - "3.3.3.3"
+          - "1.2.3.4"
+          - "6.6.6.9"
+          - "10.1.4.67"
+      cisco.ios.ios_ntp_global:
+        config:
+          peers: 
+            - peer: "{{ item }}"
+              version: 2
+      loop: "{{ myservers }}"

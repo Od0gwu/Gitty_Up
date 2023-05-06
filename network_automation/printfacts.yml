@@ -1,0 +1,17 @@
+---
+
+- name: "Ansible Facts for Cisco devices"
+  hosts: cisco
+  gather_facts: true
+  connection: network_cli
+  
+  tasks:
+    - name: "Gathering facts"
+      cisco.ios.ios_facts:
+ #       gather_subset: all
+        gather_network_resources: all
+
+    - debug:
+        msg: "{{ ansible_facts.network_resources.ntp_global }}"
+
+ 

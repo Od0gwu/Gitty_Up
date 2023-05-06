@@ -1,0 +1,11 @@
+---
+
+- name: "Show vars of hosts"
+  hosts: all
+  gather_facts:  no
+
+  tasks:
+    - name: "Showing host vars"
+      debug: 
+        msg: "{{ hostvars[ansible_host]['ansible_version'] }}"
+
