@@ -8,7 +8,7 @@ import csv
 import pwinput
 
 user = input("Username: ")
-passwd = pwinput(("Password: ")
+passwd = pwinput("Password: ")
                  
 filename = input("filename: ")
                  
@@ -25,7 +25,7 @@ with open(filename, 'r') as device_list:
         for row in csv_reader:
             print('*'*10 + str(dev_count) + '*'*10)
             dev_count += 1
-            hostname - row[0]
+            hostname = row[0]
             host_ip = row[1]
 
             device = {
@@ -39,7 +39,7 @@ with open(filename, 'r') as device_list:
                 with ConnectHandler(**device) as devconn:
                     output = devconn.send_command("show version", read_timeout=10)
                     if (re.search(r"Model [Nn]umber \s*\:(.*)", output)):
-                        search_result = re.search(r"Model [Nn]umber \s*\:(.*), output)
+                        search_result = re.search(r"Model [Nn]umber \s*\:(.*)", output)
                         result = search_result.group(1)
                         print(result)
                         row.append(result)
@@ -84,4 +84,4 @@ with open(filename, 'r') as device_list:
                 print(f"{host_ip} is not a cisco device")
                 all.append(row)
                 continue
-        write.writerows(all)
+        writer.writerows(all)
