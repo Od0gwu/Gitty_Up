@@ -9,10 +9,12 @@ import pwinput
 
 user = input("Username: ")
 passwd = pwinput("Password: ")
-                 
+
+#Enter name of csv file that contains the list of network devices you want to iterate through                 
 filename = input("filename: ")
                  
 with open(filename, 'r') as device_list:
+#Create a new csv file where you augment original csv with new column  
     with open("new_"+filename, 'w', newline='') as new_device_list:
         writer = csv.writer(new_device_list)
         csv_reader = csv.reader(device_list)
